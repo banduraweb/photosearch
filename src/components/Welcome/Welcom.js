@@ -1,5 +1,4 @@
-import React from 'react';
-import './welcome.css';
+import React, { memo } from 'react';
 import { useSpring, animated } from 'react-spring';
 const AnimFeTurbulence = animated('feTurbulence');
 const AnimFeDisplacementMap = animated('feDisplacementMap');
@@ -49,4 +48,4 @@ const Welcome = () => {
     );
 };
 
-export default Welcome;
+export default memo(Welcome);

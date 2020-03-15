@@ -1,0 +1,14 @@
+.ant-breadcrumb {
+  min-width: 300px;
+  width: 70%;
+}
+
+.search {
+  margin: 16px 0;
+  position: relative;
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

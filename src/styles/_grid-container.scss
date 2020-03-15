@@ -1,0 +1,15 @@
+.gallery-container {
+  --card-width: 348px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 0fr));
+  gap: 5px;
+  justify-content: center;
+}
+
+.gallery__img {
+  width: 348px;
+  height: 240px;
+  object-fit: cover;
+}
+
+

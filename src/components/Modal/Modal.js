@@ -9,11 +9,10 @@ function info() {
                 <p>This service help you to look for different photos</p>
                 <p>
                     fetched from
-                    <br/>
-                    <span className="logo-flickr">Flic</span>
-                    <span className="logo-flickr-r">r</span>
-                    {" "}&&{" "}
-                    <span className="logo-pixaby">Pixabay</span>
+                    <br />
+                    <span className="logo logo--flick">Flick</span>
+                    <span className="logo logo--red">r</span> &&{' '}
+                    <span className="logo logo--pixaby">Pixabay</span>
                 </p>
             </div>
         ),

@@ -1,0 +1,14 @@
+@import '~antd/dist/antd.css';
+@import "layout";
+@import "header";
+@import "hello-block";
+@import "search-input";
+@import "logos";
+@import "footer";
+@import "modal";
+@import "grid-container";
+
+html, body {
+  font-family: 'Baloo 2', cursive;
+  background-color: #1890FF;
+}

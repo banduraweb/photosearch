@@ -1,0 +1,13 @@
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap : wrap;
+  justify-content: space-around;
+  width: 100%;
+  height: fit-content;
+
+  &__item {
+    font-size: 2rem;
+  }
+}

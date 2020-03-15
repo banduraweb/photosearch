@@ -1,0 +1,17 @@
+.footer {
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  font-size: 1vw;
+  width: 100vw;
+
+  &__info {
+    color: #001529;
+  }
+
+  &__btn-get-info {
+    position: fixed;
+    width: 100px;
+    left: calc(50% - 50px);
+  }
+}
