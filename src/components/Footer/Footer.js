@@ -1,14 +1,8 @@
 import React, { memo } from 'react';
 import { Button, Layout } from 'antd';
 import Info from '../Modal/Modal';
-import {useDispatch, useSelector} from "react-redux";
-import { LoadData } from "../../store/actions";
-
 
 const Footer = () => {
-    const query = useSelector(state=>state.query);
-    const dispatch = useDispatch();
-
     const { Footer } = Layout;
     return (
         <Footer className="footer">
@@ -20,8 +14,6 @@ const Footer = () => {
             >
                 Get info
             </Button>
-            <button >LOAD MORE</button>
-{/*onClick={()=>{dispatch(LoadData(query,2))}}*/}
         </Footer>
     );
 };

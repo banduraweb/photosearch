@@ -14,7 +14,6 @@ const loadReducer = (state = startPhotoList, action) => {
     }
 };
 
-
 const queryReducer = (state = '', action) => {
     switch (action.type) {
         case actionsTypes.SET_QUERY:
@@ -29,20 +28,39 @@ const startPage = 1;
 const countPageReducer = (state = startPage, action) => {
     switch (action.type) {
         case actionsTypes.COUNT_PAGE_NUMBER:
-            return state+1;
+            return state + 1;
         case actionsTypes.RESET_PAGE_NUMBER:
-
             return 1;
         default:
             return state;
     }
 };
 
+const historySearchReducer = (state = [], action) => {
+    switch (action.type) {
+        case actionsTypes.SET_HISTORY_SEARCH:
+            const { payload } = action;
+            return [...state, payload];
 
-export default queryReducer;
+        default:
+            return state;
+    }
+};
+
+const timeRequestReducer = (state = null, action) => {
+    switch (action.type) {
+        case actionsTypes.GET_TIME_REQUEST:
+            const { payload } = action;
+            return payload;
+        default:
+            return state;
+    }
+};
 
 export const rootReducer = combineReducers({
     photoList: loadReducer,
     query: queryReducer,
-    page: countPageReducer
+    page: countPageReducer,
+    history: historySearchReducer,
+    time: timeRequestReducer,
 });

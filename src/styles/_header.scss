@@ -9,5 +9,15 @@
 
   &__item {
     font-size: 2rem;
+
+    &--result {
+      display: flex;
+      flex-direction: column;
+      justify-content: right;
+    }
+
+    &--hover {
+      cursor: pointer;
+    }
   }
 }
