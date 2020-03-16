@@ -2,18 +2,20 @@ import React from 'react';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Welcome from './components/Welcome/Welcom';
+import { LoadData } from './store/actions';
+import History from './components/Histoty/History';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from 'antd';
 
 import './styles/main.scss';
-import { LoadData } from './store/actions';
 
 const App = () => {
     const list = useSelector(state => state.photoList);
     const query = useSelector(state => state.query);
     const pageNumber = useSelector(state => state.page);
+    const isActiveHistoryBtn = useSelector(state => state.isActiveHistoryBtn);
 
     const dispatch = useDispatch();
     const onScroll = () => {
@@ -29,7 +31,7 @@ const App = () => {
                 <section className="welcome">
                     <Welcome />
                 </section>
-            ) : (
+            ) : !isActiveHistoryBtn ? (
                 <InfiniteScroll
                     pageStart={pageNumber}
                     loadMore={onScroll}
@@ -48,6 +50,8 @@ const App = () => {
                         ))}
                     </div>
                 </InfiniteScroll>
+            ) : (
+                <History />
             )}
 
             <Footer />

@@ -6,22 +6,26 @@ import {
     LoadData,
     resetPhotoList,
     resetPageNumber,
+    toggleHistoryBtn,
 } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
+    const { Header } = Layout;
+    const { Search } = Input;
     const query = useSelector(state => state.query);
     const time = useSelector(state => state.time);
     const list = useSelector(state => state.photoList);
-    const history = useSelector(state => state.history);
     const pageNumber = useSelector(state => state.page);
+    const isActiveHistoryBtn = useSelector(state => state.isActiveHistoryBtn);
     const dispatch = useDispatch();
-    const { Header } = Layout;
-    const { Search } = Input;
     const [currentQuery, setCurrentQuery] = useState('');
     const [prevQuery, setPrevQuery] = useState('');
 
-    console.log(history);
+    const queryNormalize = inputValue => {
+        return inputValue.replace(/[0-9]|[!@#$%^&*()_+]/g, '');
+    };
+
     const loadPhotoList = () => {
         setPrevQuery(query);
         if (prevQuery !== currentQuery && query !== '') {
@@ -32,7 +36,7 @@ const Header = () => {
 
     const handleQuery = ({ target }) => {
         dispatch(resetPageNumber());
-        setCurrentQuery(target.value);
+        setCurrentQuery(queryNormalize(target.value));
     };
 
     const onEnterKey = e => {
@@ -50,8 +54,11 @@ const Header = () => {
                             title="you can see you search history"
                             color="success"
                             className="header__item--hover"
+                            onClick={() => dispatch(toggleHistoryBtn())}
                         >
-                            history search
+                            {!isActiveHistoryBtn
+                                ? 'history search'
+                                : 'back to search'}
                         </Tag>
                     </span>
                 </div>
@@ -60,26 +67,32 @@ const Header = () => {
                 <span className="logo logo--flick">Flick</span>
                 <span className="logo logo--red">r</span>
             </div>
-            <Breadcrumb className="search">
-                <Breadcrumb.Item>
-                    <Search
-                        placeholder="input search text"
-                        onChange={e => {
-                            dispatch(searchQuery(e));
-                            handleQuery(e);
-                        }}
-                        onKeyPress={e => {
-                            onEnterKey(e);
-                        }}
-                    />
-                    <Button
-                        type="primary"
-                        className="search__button"
-                        onClick={loadPhotoList}
-                        icon={<SearchOutlined />}
-                    />
-                </Breadcrumb.Item>
-            </Breadcrumb>
+            {!isActiveHistoryBtn && (
+                <Breadcrumb className="search">
+                    <Breadcrumb.Item>
+                        <Search
+                            placeholder="input search text"
+                            value={query}
+                            onChange={e => {
+                                dispatch(
+                                    searchQuery(queryNormalize(e.target.value)),
+                                );
+                                handleQuery(e);
+                            }}
+                            onKeyPress={e => {
+                                onEnterKey(e);
+                            }}
+                        />
+                        <Button
+                            type="primary"
+                            className="search__button"
+                            onClick={loadPhotoList}
+                            icon={<SearchOutlined />}
+                        />
+                    </Breadcrumb.Item>
+                </Breadcrumb>
+            )}
+
             <div className="header__item">
                 <span className="logo logo--pixaby">Pixabay</span>
             </div>

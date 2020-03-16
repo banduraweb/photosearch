@@ -14,4 +14,11 @@
     width: 100px;
     left: calc(50% - 50px);
   }
+
+  &__total {
+    position: fixed;
+    right: -70px;
+    transform: rotate(-90deg);
+    bottom: 130px;
+  }
 }
