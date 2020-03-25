@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Layout } from 'antd';
 
 import './styles/main.scss';
+import CurrentImg from './components/CurrentImg/CurrentImg';
 
 const App = () => {
     const list = useSelector(state => state.photoList);
@@ -41,17 +42,15 @@ const App = () => {
                     <div className="gallery-container ">
                         {list.map((photo, idx) => (
                             <figure key={idx}>
-                                <img
-                                    className="gallery__img"
-                                    alt={query}
-                                    src={photo}
-                                />
+                                <CurrentImg photo={photo} alt={query} />
                             </figure>
                         ))}
                     </div>
                 </InfiniteScroll>
             ) : (
+              <div className="history">
                 <History />
+              </div>
             )}
 
             <Footer />

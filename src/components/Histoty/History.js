@@ -89,7 +89,7 @@ const History = () => {
             <Table
                 columns={columns}
                 dataSource={data}
-                size="middle"
+                size="small"
                 pagination={false}
             />
             {indexArrayOfSavedUrls !== null && (
